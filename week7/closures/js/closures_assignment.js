@@ -8,10 +8,15 @@
 */
 
 
-function secretKey () {
+function secretKey (randNum) {
+	// return math.random();
+	return function () {
+		return Math.random() * randNum;
 
-
+		// return random;
+	}
 }
 
 var createKey = secretKey(341);
 
+console.log('createKey()', createKey());

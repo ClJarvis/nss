@@ -3,7 +3,7 @@
 
   You are an HR manager and need a way to keep
   track of employees, which department they work
-  in, and other statistical information. You need
+  in, and other staistical information. You need
   to build a simple JavaScript program that...
 
   1. Defines a Company, a Department, a Manager,
@@ -45,8 +45,12 @@
 */
 
 // Define the Company function
+
+var creator = "Chris";
+
 function Company (name) {
   this.company = name;
+  this.creator = creator;
 }
 
 // Define the Department function
@@ -54,14 +58,29 @@ function Department (name) {
   this.department = name;
 }
 
-// Define the Manager function
+Department.prototype = new Company("Generic");
+// console.log(this.department); /* ??? */
 
+// Define the Manager function
+function Manager (first, lastName){
+  this.first = first;
+  this.last = lastName;
+}
+
+Manager.prototype = new Department("Software");
 
 // Define the Employee function.
-function Employee () {
-  // this.firstName = first;
+function Employee (first, last, age, status, salary) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.status = status;
+  this.salary = salary;
+
 }
+
 Employee.prototype = new Department("Software");
+// console.log (this.employee); /*my edit */
 
 // You can add methods to an object's prototype (see usage below)
 Employee.prototype.setDepartment = function (department) {
@@ -70,12 +89,32 @@ Employee.prototype.setDepartment = function (department) {
   // object, but can be overriden at any time by each Employee
   this.department = department;
 }
+Employee.prototype.getHourlyWage= function () {
+    return this.salary / 2080;
+
+  // this.HourlyWage= department;
+}
+Employee.prototype.setManager = function (first, last) {
+
+
+  this.Manager = new Manager(first, last);
+
+}
+
 
 var Steve = new Employee("Steve", "Brownlee", "Age", "Married", "1000000");
 
+// Employee.prototype.setCreator = new Employee ("chris", "Jarvis", "age", "married", "50000");
+
 // Change the department for an employee to override the default
 Steve.setDepartment("Accounting");
-
+Steve.setManager("sam", "smith");
+Steve.setManager("Bat", "Man");
 
 // Show the employee's properties
 console.log(Steve);
+console.log(Steve.getHourlyWage());
+
+
+console.log(creator);
+console.log(Steve.Manager);
