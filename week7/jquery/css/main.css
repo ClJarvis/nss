@@ -1,0 +1,27 @@
+div {
+  padding: 20px;
+  font-size: 40px;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: initial;
+}
+
+/*
+#mousey:hover {
+  background-color: blue;
+}
+*/
+
